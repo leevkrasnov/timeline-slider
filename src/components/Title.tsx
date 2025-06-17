@@ -26,18 +26,16 @@ const GradientLine = styled.span`
   border-left: min(0.3vw, 5px) solid;
   border-image-source: linear-gradient(
     180deg,
-    ${({ theme }) => theme.colors.blue} 0%,
+    ${({ theme }) => theme.colors.customBlue} 0%,
     ${({ theme }) => theme.colors.fuschia} 100%
   );
   border-image-slice: 1;
 `
 
 const Text = styled.h1`
-  font-family: 'PT Sans', sans-serif;
   line-height: 120%;
   font-weight: 700;
   font-size: min(2.9vw, 56px);
-  color: ${({ theme }) => theme.colors.blackBlue};
 `
 
 export default Title

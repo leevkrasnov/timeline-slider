@@ -11,6 +11,11 @@ export default createGlobalStyle`
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    background-color: ${({ theme }) => theme.colors.customWhite};
+
+    font-family: 'PT Sans', sans-serif;
+    color: ${({ theme }) => theme.colors.blackBlue};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

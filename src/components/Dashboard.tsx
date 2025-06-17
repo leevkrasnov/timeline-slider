@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import Title from './Title'
 import YearsView from './YearsView'
+import Navigation from './Navigation'
+import CardsLayout from './CardsLayout'
 
 const Dashboard = () => {
   return (
@@ -10,6 +12,8 @@ const Dashboard = () => {
       <HorizontalLine />
       <Title />
       <YearsView />
+      <Navigation />
+      <CardsLayout />
     </Container>
   )
 }
@@ -23,6 +27,8 @@ const Container = styled.div`
   width: min(75vw, 100%);
   height: 100%;
   margin-left: clamp(16px, 17vw, 320px);
+
+  background-color: ${({ theme }) => theme.colors.customWhite};
 `
 const VerticalLine = styled.span`
   position: absolute;

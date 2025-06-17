@@ -1,7 +1,7 @@
 import Dashboard from './components/Dashboard'
 import { baseTheme } from './styles/baseTheme'
 import DefaultStyles from './styles/defaultStyles'
-import Fonts from './styles/fonts'
+import Fonts from './styles/customFonts'
 import { ThemeProvider } from 'styled-components'
 
 const App = () => {
