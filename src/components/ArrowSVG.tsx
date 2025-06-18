@@ -19,7 +19,7 @@ const StyledSVG = styled.svg<ArrowSVGProps>`
 const ArrowSVG = ({
   direction = 'right',
   color = '#3877EE',
-  size = 12,
+  size = 10,
   strokeWidth = 2,
 }: ArrowSVGProps) => {
   return (

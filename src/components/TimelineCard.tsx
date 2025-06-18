@@ -1,0 +1,47 @@
+import styled from 'styled-components'
+
+interface TimelineCardProps {
+  year: number
+  description: string
+}
+
+const TimelineCard = ({ year, description }: TimelineCardProps) => {
+  return (
+    <CardContainer role="group" aria-labelledby={`Год-${year}`}>
+      <YearTitle aria-label={`Год-${year}`}>{year}</YearTitle>
+
+      <EventDescription>{description}</EventDescription>
+    </CardContainer>
+  )
+}
+
+const CardContainer = styled.article`
+  height: 100%;
+  width: clamp(200px, 20vw, 400px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: clamp(8px, 1.2vh, 15px);
+`
+
+const YearTitle = styled.h3`
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(18px, 1.3vw, 25px);
+  line-height: 1.2;
+  cursor: default;
+
+  color: ${({ theme }) => theme.colors.customBlue};
+`
+
+const EventDescription = styled.article`
+  word-break: break-word;
+  white-space: normal;
+  margin: 0;
+
+  font-size: clamp(14px, 1.2vw, 20px);
+  line-height: 1.5;
+  cursor: default;
+`
+
+export default TimelineCard

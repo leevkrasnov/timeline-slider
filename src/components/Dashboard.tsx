@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import Title from './Title'
-import YearsView from './YearsView'
-import Navigation from './Navigation'
-import CardsLayout from './CardsLayout'
+import TimelineHeader from './TimelineHeader'
+import YearsDisplay from './YearsDisplay'
+import NavControls from './NavControls'
+import TimelineSidebar from './TimelineSidebar'
 
 const Dashboard = () => {
   return (
@@ -13,10 +13,10 @@ const Dashboard = () => {
         <HorizontalLine />
       </LinesWrapper>
 
-      <Title />
-      <YearsView />
-      <Navigation />
-      <CardsLayout />
+      <TimelineHeader />
+      <YearsDisplay />
+      <NavControls />
+      <TimelineSidebar />
     </Container>
   )
 }
