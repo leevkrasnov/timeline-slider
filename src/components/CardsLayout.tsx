@@ -1,90 +1,80 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation } from 'swiper/modules'
+import { Navigation, A11y } from 'swiper/modules'
 import styled from 'styled-components'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
 import { data } from '../data'
 import CardView from './CardView'
+import ArrowSVG from './ArrowSVG'
 
 const SwiperContainer = styled.section`
   position: absolute;
   top: min(78vh, 840px);
   width: min(75vw, 1440px);
   height: min(12.5vh, 135px);
-  border: 1px solid red;
 
-  .swiper {
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & .prev-button,
+  & .next-button {
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
   }
 
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  & .prev-button.swiper-button-disabled,
+  & .next-button.swiper-button-disabled {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
+`
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+const StyledSwiper = styled(Swiper)`
+  width: min(75vw, 1280px);
+`
 
-    color: ${({ theme }) => theme.colors.customBlue};
-    background-color: red;
-    box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
-    transition: box-shadow 0.2s ease-in-out;
+const NavButton = styled.button`
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin: 0 20px;
 
-    &:hover {
-      box-shadow: 0 0 15px rgba(56, 119, 238, 0.2);
-    }
-
-    &::after {
-      font-size: 10px;
-      font-weight: 700;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 25px;
-      height: 25px;
-    }
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
 `
 
 const CardsLayout = () => {
   return (
     <SwiperContainer>
-      <Swiper
-        modules={[Navigation]}
-        navigation
-        spaceBetween={80} // соответствует column-gap: min(4vw, 80px)
-        slidesPerView={3} // отображаем 3 карточки одновременно, можно настроить
-        // breakpoints={{
-        //   320: {
-        //     slidesPerView: 1,
-        //     spaceBetween: 20,
-        //   },
-        //   768: {
-        //     slidesPerView: 2,
-        //     spaceBetween: 40,
-        //   },
-        //   1024: {
-        //     slidesPerView: 3,
-        //     spaceBetween: 80,
-        //   },
-        // }}
+      <NavButton className="prev-button">
+        <ArrowSVG direction="left" color="#3877EE" size={12} strokeWidth={2} />
+      </NavButton>
+      <StyledSwiper
+        modules={[Navigation, A11y]}
+        navigation={{
+          prevEl: '.prev-button',
+          nextEl: '.next-button',
+        }}
+        spaceBetween={80}
+        slidesPerView={3}
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>
             <CardView year={item.year} description={item.description} />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </StyledSwiper>
+      <NavButton className="next-button">
+        <ArrowSVG direction="right" color="#3877EE" size={12} strokeWidth={2} />
+      </NavButton>
     </SwiperContainer>
   )
 }

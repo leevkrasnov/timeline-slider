@@ -8,8 +8,11 @@ import CardsLayout from './CardsLayout'
 const Dashboard = () => {
   return (
     <Container>
-      <VerticalLine />
-      <HorizontalLine />
+      <LinesWrapper>
+        <VerticalLine />
+        <HorizontalLine />
+      </LinesWrapper>
+
       <Title />
       <YearsView />
       <Navigation />
@@ -30,6 +33,13 @@ const Container = styled.div`
 
   background-color: ${({ theme }) => theme.colors.customWhite};
 `
+
+const LinesWrapper = styled.div`
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+`
+
 const VerticalLine = styled.span`
   position: absolute;
   top: 0;
@@ -37,6 +47,7 @@ const VerticalLine = styled.span`
   left: 50%;
   transform: translateX(-50%);
   width: 1px;
+  z-index: -1;
 
   background-color: rgba(66, 86, 122, 0.1);
 `
@@ -49,6 +60,7 @@ const HorizontalLine = styled.span`
   transform: translateY(-50%);
   background-color: rgba(66, 86, 122, 0.1);
   height: 1px;
+  z-index: -1;
 `
 
 export default Dashboard

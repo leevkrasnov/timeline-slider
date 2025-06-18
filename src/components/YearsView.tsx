@@ -30,10 +30,10 @@ const YearsContainer = styled.div`
 const YearStyle = css`
   font-size: min(10vw, 200px);
   font-weight: 700;
-  font-family: 'PT Sans', sans-serif;
-  line-height: 160%;
+  line-height: 1.6;
   letter-spacing: -0.02em;
   z-index: 10;
+  cursor: default;
 `
 
 const FirstYear = styled.span`

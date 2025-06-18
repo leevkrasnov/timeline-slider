@@ -1,8 +1,9 @@
-import Dashboard from './components/Dashboard'
+import { ThemeProvider } from 'styled-components'
 import { baseTheme } from './styles/baseTheme'
 import DefaultStyles from './styles/defaultStyles'
 import Fonts from './styles/customFonts'
-import { ThemeProvider } from 'styled-components'
+
+import Dashboard from './components/Dashboard'
 
 const App = () => {
   return (
