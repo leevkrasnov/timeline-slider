@@ -1,10 +1,15 @@
 import styled from 'styled-components'
+import ArrowSVG from './ArrowSVG'
 
 const NavArrows = () => {
   return (
     <ButtonGroup>
-      <NavArrow aria-label="Предыдущий временной период">{'<'}</NavArrow>
-      <NavArrow aria-label="Следующий временной период">{'>'}</NavArrow>
+      <NavArrow aria-label="Предыдущий временной период">
+        <ArrowSVG direction="left" color="#42567A" size={12} strokeWidth={2} />
+      </NavArrow>
+      <NavArrow aria-label="Следующий временной период">
+        <ArrowSVG direction="right" color="#42567A" size={12} strokeWidth={2} />
+      </NavArrow>
     </ButtonGroup>
   )
 }

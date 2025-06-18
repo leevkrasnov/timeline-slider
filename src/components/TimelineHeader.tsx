@@ -16,7 +16,6 @@ const Wrapper = styled.header`
   align-items: center;
   column-gap: clamp(16px, 4vw, 80px);
   height: clamp(60px, 6vw, 120px);
-  margin-top: clamp(60px, 16vh, 170px);
 `
 
 const GradientBar = styled.span`

@@ -35,7 +35,7 @@ const TimelineSlider = () => {
             spaceBetween: 60,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 1.5,
             spaceBetween: 40,
           },
         }}
@@ -70,7 +70,7 @@ const TimelineSliderSection = styled.section`
 
   width: min(75vw, 1440px)
   height: clamp(120px, 12.5vh, 135px);
-  margin-top: clamp(60px, 8vh, 80px);
+  margin-top: clamp(20px, 4vh, 50px);
 `
 
 const StyledSwiper = styled(Swiper)`

@@ -4,6 +4,7 @@ import TimelineHeader from './TimelineHeader'
 import YearsDisplay from './YearsDisplay'
 import NavControls from './NavControls'
 import TimelineSidebar from './TimelineSidebar'
+import InteractiveRing from './InteractiveRing'
 
 const Dashboard = () => {
   return (
@@ -13,10 +14,17 @@ const Dashboard = () => {
         <HorizontalLine />
       </LinesWrapper>
 
-      <TimelineHeader />
+      <ContentWrapper>
+        <div>
+          <TimelineHeader />
+        </div>
+        <div>
+          <NavControls />
+          <TimelineSidebar />
+        </div>
+      </ContentWrapper>
       <YearsDisplay />
-      <NavControls />
-      <TimelineSidebar />
+      <InteractiveRing />
     </Container>
   )
 }
@@ -28,10 +36,21 @@ const Container = styled.div`
   border-right: 1px solid rgba(66, 86, 122, 0.1);
 
   width: min(75vw, 100%);
-  height: 100%;
+  min-height: 100vh;
   margin-left: clamp(16px, 17vw, 320px);
 
   background-color: ${({ theme }) => theme.colors.customWhite};
+`
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 100vh;
+  padding-top: clamp(60px, 16vh, 170px);
+  padding-bottom: clamp(20px, 5vh, 60px);
 `
 
 const LinesWrapper = styled.div`
@@ -47,7 +66,6 @@ const VerticalLine = styled.span`
   left: 50%;
   transform: translateX(-50%);
   width: 1px;
-  z-index: -1;
 
   background-color: rgba(66, 86, 122, 0.1);
 `
@@ -60,7 +78,6 @@ const HorizontalLine = styled.span`
   transform: translateY(-50%);
   background-color: rgba(66, 86, 122, 0.1);
   height: 1px;
-  z-index: -1;
 `
 
 export default Dashboard

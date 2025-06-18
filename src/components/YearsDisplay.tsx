@@ -10,11 +10,15 @@ const YearsDisplay = () => {
 }
 
 const Wrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: clamp(280px, 50vw, 970px);
-  margin: clamp(20px, 6vh, 60px) auto;
 `
 
 const yearBase = css`
