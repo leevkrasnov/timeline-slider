@@ -7,7 +7,7 @@ import TimelineSidebar from './timeline/TimelineSidebar'
 import InteractiveRing from './timeline/InteractiveRing'
 import MobilePagination from './timeline/MobilePagination'
 
-import { DataProvider } from '../context/useDataContext'
+import { ContextProvider } from '../context/useDataContext'
 
 const Dashboard = () => {
   return (
@@ -17,22 +17,21 @@ const Dashboard = () => {
         <HorizontalLine />
       </LinesWrapper>
 
-      <DataProvider>
-        <ContentWrapper>
-          <div>
-            <TimelineHeader />
-          </div>
+      <ContentWrapper>
+        <div>
+          <TimelineHeader />
+        </div>
+        <ContextProvider>
           <YearsDisplay />
           <MobileDisplayLine />
+          <InteractiveRing />
           <div>
             <NavControls />
             <TimelineSidebar />
             <MobilePagination />
           </div>
-        </ContentWrapper>
-
-        <InteractiveRing />
-      </DataProvider>
+        </ContextProvider>
+      </ContentWrapper>
     </Container>
   )
 }

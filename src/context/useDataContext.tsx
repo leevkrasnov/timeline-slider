@@ -16,7 +16,11 @@ interface DataContextType {
 
 const DataContext = createContext<DataContextType | undefined>(undefined)
 
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
+export const ContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const currentPeriod = useMemo(() => periods[activeIndex], [activeIndex])
