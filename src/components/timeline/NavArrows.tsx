@@ -1,13 +1,28 @@
 import styled from 'styled-components'
-import ArrowSVG from './ArrowSVG'
+
+import { useDataContext } from '@/context/useDataContext'
+import ArrowSVG from '@/components/shared/ArrowSVG'
 
 const NavArrows = () => {
+  const { next, prev, activeIndex, periods } = useDataContext()
+
+  const isFirst = activeIndex === 0
+  const isLast = activeIndex === periods.length - 1
+
   return (
     <ButtonGroup>
-      <NavArrow aria-label="Предыдущий временной период">
+      <NavArrow
+        aria-label="Предыдущий временной период"
+        onClick={isFirst ? undefined : prev}
+        disabled={isFirst}
+      >
         <ArrowSVG direction="left" color="#42567A" size={12} strokeWidth={2} />
       </NavArrow>
-      <NavArrow aria-label="Следующий временной период">
+      <NavArrow
+        aria-label="Следующий временной период"
+        onClick={isLast ? undefined : next}
+        disabled={isLast}
+      >
         <ArrowSVG direction="right" color="#42567A" size={12} strokeWidth={2} />
       </NavArrow>
     </ButtonGroup>
@@ -32,9 +47,9 @@ const NavArrow = styled.button`
   border: 1px solid rgba(66, 86, 122, 0.5);
   background-color: ${({ theme }) => theme.colors.customWhite};
 
-  font-size: 18px;
-  line-height: 1;
   cursor: pointer;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
 `
 
 export default NavArrows

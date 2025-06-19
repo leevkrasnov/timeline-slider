@@ -1,31 +1,64 @@
-import path, { resolve as _resolve, join } from 'path'
+import path from 'path'
 import { fileURLToPath } from 'url'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
-import CompressionPlugin from 'compression-webpack-plugin'
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 export default {
-  mode: isProduction ? 'production' : 'development',
-  entry: './src/main.tsx',
+  mode: isProd ? 'production' : 'development',
+  entry: './src/index.tsx',
   output: {
-    filename: isProduction ? '[name].[contenthash].js' : '[name].js',
-    path: _resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
+    filename: isProd ? '[name].[contenthash].js' : '[name].js',
     clean: true,
-    publicPath: '/',
   },
-  devtool: isProduction ? 'source-map' : 'inline-source-map',
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      inject: 'body',
+    }),
+  ],
   optimization: {
-    minimize: isProduction,
+    minimize: isProd,
     minimizer: [
       new TerserPlugin({
+        parallel: true,
         terserOptions: {
           format: {
             comments: false,
@@ -41,92 +74,19 @@ export default {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all',
         },
       },
     },
+    runtimeChunk: 'single',
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
-    alias: {
-      '@': _resolve(__dirname, 'src'),
-    },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      inject: 'body',
-      minify: isProduction,
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      typescript: {
-        diagnosticOptions: {
-          semantic: true,
-          syntactic: true,
-        },
-        mode: 'write-references',
-      },
-    }),
-    ...(isProduction
-      ? [
-          new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
-          }),
-          new CompressionPlugin({
-            algorithm: 'gzip',
-            test: /\.(js|css|html|svg)$/,
-            threshold: 10240,
-            minRatio: 0.8,
-          }),
-        ]
-      : []),
-  ],
   devServer: {
     static: {
-      directory: join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'public'),
     },
-    hot: true,
     compress: true,
     port: 3000,
+    hot: true,
     historyApiFallback: true,
-    client: {
-      overlay: true,
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'X-Requested-With, content-type, Authorization',
-    },
   },
-  performance: {
-    hints: isProduction ? 'warning' : false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
-  },
+  devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
 }

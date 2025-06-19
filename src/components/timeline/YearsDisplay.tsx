@@ -1,10 +1,25 @@
 import styled, { css } from 'styled-components'
 
+import { useDataContext } from '@/context/useDataContext'
+import AnimatedCounter from '@/components/shared/AnimationNumbers'
+
 const YearsDisplay = () => {
+  const { years, currentPeriod } = useDataContext()
+
   return (
     <Wrapper>
-      <Year>2014</Year>
-      <Year $variant="end">2020</Year>
+      <Year>
+        <AnimatedCounter
+          initialValue={years.from}
+          targetValue={currentPeriod.from}
+        />
+      </Year>
+      <Year $variant="end">
+        <AnimatedCounter
+          initialValue={years.to}
+          targetValue={currentPeriod.to}
+        />
+      </Year>
     </Wrapper>
   )
 }

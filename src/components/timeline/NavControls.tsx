@@ -1,10 +1,16 @@
 import styled from 'styled-components'
+
+import { useDataContext } from '@/context/useDataContext'
 import NavArrows from './NavArrows'
 
 const NavControls = () => {
+  const { activeIndex } = useDataContext()
+
   return (
     <Wrapper>
-      <SlideIndicator>06/06</SlideIndicator>
+      <SlideIndicator>
+        {String(activeIndex + 1).padStart(2, '0')}/06
+      </SlideIndicator>
       <NavArrows />
     </Wrapper>
   )

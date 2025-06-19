@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 
-import TimelineHeader from './TimelineHeader'
-import YearsDisplay from './YearsDisplay'
-import NavControls from './NavControls'
-import TimelineSidebar from './TimelineSidebar'
-import InteractiveRing from './InteractiveRing'
+import TimelineHeader from './timeline/TimelineHeader'
+import YearsDisplay from './timeline/YearsDisplay'
+import NavControls from './timeline/NavControls'
+import TimelineSidebar from './timeline/TimelineSidebar'
+import InteractiveRing from './timeline/InteractiveRing'
+
+import { DataProvider } from '../context/useDataContext'
 
 const Dashboard = () => {
   return (
@@ -14,17 +16,19 @@ const Dashboard = () => {
         <HorizontalLine />
       </LinesWrapper>
 
-      <ContentWrapper>
-        <div>
-          <TimelineHeader />
-        </div>
-        <div>
-          <NavControls />
-          <TimelineSidebar />
-        </div>
-      </ContentWrapper>
-      <YearsDisplay />
-      <InteractiveRing />
+      <DataProvider>
+        <ContentWrapper>
+          <div>
+            <TimelineHeader />
+          </div>
+          <div>
+            <NavControls />
+            <TimelineSidebar />
+          </div>
+        </ContentWrapper>
+        <YearsDisplay />
+        <InteractiveRing />
+      </DataProvider>
     </Container>
   )
 }

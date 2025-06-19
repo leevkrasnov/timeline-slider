@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components'
-import { baseTheme } from './styles/baseTheme'
-import DefaultStyles from './styles/defaultStyles'
-import Fonts from './styles/customFonts'
+import { baseTheme } from './assets/styles/baseTheme'
+import DefaultStyles from './assets/styles/defaultStyles'
+import Fonts from './assets/styles/customFonts'
 
 import Dashboard from './components/Dashboard'
 
