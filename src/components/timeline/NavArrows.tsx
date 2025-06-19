@@ -16,14 +16,14 @@ const NavArrows = () => {
         onClick={isFirst ? undefined : prev}
         disabled={isFirst}
       >
-        <ArrowSVG direction="left" color="#42567A" size={12} strokeWidth={2} />
+        <ArrowSVG direction="left" color="#42567A" />
       </NavArrow>
       <NavArrow
         aria-label="Следующий временной период"
         onClick={isLast ? undefined : next}
         disabled={isLast}
       >
-        <ArrowSVG direction="right" color="#42567A" size={12} strokeWidth={2} />
+        <ArrowSVG direction="right" color="#42567A" />
       </NavArrow>
     </ButtonGroup>
   )
@@ -36,8 +36,8 @@ const ButtonGroup = styled.div`
 `
 
 const NavArrow = styled.button`
-  width: clamp(30px, 2.5vw, 50px);
-  height: clamp(30px, 2.5vw, 50px);
+  width: clamp(25px, 2.5vw, 50px);
+  height: clamp(25px, 2.5vw, 50px);
 
   display: flex;
   justify-content: center;

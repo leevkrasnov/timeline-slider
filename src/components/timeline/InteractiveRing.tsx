@@ -90,6 +90,10 @@ const RingContainer = styled.div`
   width: clamp(360px, 27vw, 530px);
   height: clamp(360px, 27vw, 530px);
   overflow: visible;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const RotatingRing = styled.div`

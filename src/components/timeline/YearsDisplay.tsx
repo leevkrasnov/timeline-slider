@@ -34,10 +34,20 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: clamp(280px, 50vw, 970px);
+
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    transform: none;
+    margin-top: 60px;
+
+    justify-content: flex-start;
+    column-gap: 25px;
+  }
 `
 
 const yearBase = css`
-  font-size: clamp(60px, 10vw, 200px);
+  font-size: clamp(56px, 10vw, 200px);
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: -0.02em;

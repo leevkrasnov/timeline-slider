@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
 import NavArrows from './NavArrows'
+import MobilePagination from './MobilePagination'
 
 const NavControls = () => {
   const { activeIndex } = useDataContext()
@@ -21,15 +22,21 @@ const Wrapper = styled.nav`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  column-gap: clamp(16px, 4vw, 80px);
 
-  width: clamp(70px, 6vw, 120px);
-  height: clamp(70px, 8vh, 90px);
+  width: clamp(60px, 6vw, 120px);
+  height: clamp(50px, 8vh, 90px);
   margin-inline: clamp(16px, 4vw, 80px);
+
+  @media (max-width: 768px) {
+    position: absolute;
+    left: 20px;
+    bottom: 15px;
+    margin-inline: 0;
+  }
 `
 
 const SlideIndicator = styled.span`
-  font-size: clamp(12px, 0.3vw, 14px);
+  font-size: 14px;
   font-weight: 400;
 `
 

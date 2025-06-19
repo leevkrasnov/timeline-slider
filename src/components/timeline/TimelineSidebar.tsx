@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Keyboard, Navigation, A11y } from 'swiper/modules'
+import { Keyboard, Navigation, A11y, FreeMode } from 'swiper/modules'
 import styled from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
@@ -13,7 +13,7 @@ import 'swiper/css/navigation'
 import type { IData } from '@/data/periods'
 import type { Swiper as SwiperType } from 'swiper'
 
-const TimelineSlider = () => {
+const TimelineSidebar = () => {
   const { events } = useDataContext()
   const [isVisible, setIsVisible] = useState<boolean>(true)
   const [displayEvents, setDisplayEvents] = useState<IData[]>(events)
@@ -41,12 +41,7 @@ const TimelineSlider = () => {
             type="button"
             aria-label="Предыдущий слайд"
           >
-            <ArrowSVG
-              direction="left"
-              color="#3877EE"
-              size={12}
-              strokeWidth={2}
-            />
+            <ArrowSVG direction="left" color="#3877EE" />
           </NavigationButton>
 
           <StyledSwiper
@@ -54,9 +49,7 @@ const TimelineSlider = () => {
               swiperRef.current = swiper
             }}
             $isVisible={isVisible}
-            watchSlidesProgress={true}
-            slideVisibleClass="swiper-slide-visible"
-            modules={[Navigation, A11y, Keyboard]}
+            modules={[Navigation, A11y, Keyboard, FreeMode]}
             navigation={{
               prevEl: '.prev-button',
               nextEl: '.next-button',
@@ -64,28 +57,18 @@ const TimelineSlider = () => {
             keyboard={{
               enabled: true,
             }}
-            breakpoints={{
-              1440: {
-                slidesPerView: 3,
-                spaceBetween: 80,
-              },
-              1024: {
-                slidesPerView: 2.5,
-                spaceBetween: 60,
-              },
-              768: {
-                slidesPerView: 1.5,
-                spaceBetween: 40,
-              },
-            }}
+            freeMode={true}
+            slidesPerView="auto"
+            spaceBetween={60}
             a11y={{
               enabled: true,
               prevSlideMessage: 'Предыдущий слайд',
               nextSlideMessage: 'Следующий слайд',
             }}
+            slideNextClass="swiper-slide-next"
           >
             {displayEvents.map((item) => (
-              <SwiperSlide key={item.id}>
+              <SwiperSlide key={item.id} style={{ width: 'auto' }}>
                 <TimelineCard year={item.year} description={item.description} />
               </SwiperSlide>
             ))}
@@ -96,12 +79,7 @@ const TimelineSlider = () => {
             type="button"
             aria-label="Следующий слайд"
           >
-            <ArrowSVG
-              direction="right"
-              color="#3877EE"
-              size={10}
-              strokeWidth={2}
-            />
+            <ArrowSVG direction="right" color="#3877EE" />
           </NavigationButton>
         </>
       ) : (
@@ -116,17 +94,22 @@ const TimelineSliderSection = styled.section`
   align-items: center;
   justify-content: center;
 
-  width: min(75vw, 1440px);
-  height: clamp(120px, 12.5vh, 135px);
+  max-width: 100%;
+  height: 140px;
   margin-top: clamp(20px, 4vh, 50px);
   z-index: 10;
 `
 
 const StyledSwiper = styled(Swiper)<{ $isVisible: boolean }>`
-  width: 100%;
   height: clamp(120px, 12.5vh, 135px);
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: opacity 0.3s ease-in-out;
+
+  .swiper-slide-next {
+    @media (max-width: 768px) {
+      opacity: 0.5;
+    }
+  }
 `
 
 const NoEventsMessage = styled.div`
@@ -157,6 +140,10 @@ const NavigationButton = styled.button`
     visibility: hidden;
     pointer-events: none;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
-export default TimelineSlider
+export default TimelineSidebar

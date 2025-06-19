@@ -15,7 +15,7 @@ const Wrapper = styled.header`
   display: flex;
   align-items: center;
   column-gap: clamp(16px, 4vw, 80px);
-  height: clamp(60px, 6vw, 120px);
+  height: clamp(50px, 6vw, 120px);
 `
 
 const GradientBar = styled.span`
@@ -27,12 +27,20 @@ const GradientBar = styled.span`
     ${({ theme }) => theme.colors.fuschia} 100%
   );
   border-image-slice: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const Title = styled.h1`
   font-size: clamp(28px, 2.9vw, 56px);
-  line-height: 120%;
+  line-height: 1.2;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 export default TimelineHeader

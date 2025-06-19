@@ -11,6 +11,7 @@ interface DataContextType {
   label: string
   next: () => void
   prev: () => void
+  goTo: (idx: number) => void
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined)
@@ -30,6 +31,11 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const prev = () =>
     setActiveIndex((idx) => (idx - 1 + periods.length) % periods.length)
 
+  const goTo = (idx: number) => {
+    if (idx < 0 || idx >= periods.length) return
+    setActiveIndex(idx)
+  }
+
   const value: DataContextType = {
     activeIndex,
     setActiveIndex,
@@ -40,6 +46,7 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
     label,
     next,
     prev,
+    goTo,
   }
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>

@@ -17,17 +17,23 @@ const TimelineCard = ({ year, description }: TimelineCardProps) => {
 
 const CardContainer = styled.article`
   height: 100%;
-  width: clamp(200px, 20vw, 400px);
+
+  width: auto;
+  max-width: 400px;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   row-gap: clamp(8px, 1.2vh, 15px);
+
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
 `
 
 const YearTitle = styled.h3`
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(18px, 1.3vw, 25px);
+  font-size: clamp(16px, 1.3vw, 25px);
   line-height: 1.2;
   cursor: default;
 

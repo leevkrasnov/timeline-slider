@@ -5,6 +5,7 @@ import YearsDisplay from './timeline/YearsDisplay'
 import NavControls from './timeline/NavControls'
 import TimelineSidebar from './timeline/TimelineSidebar'
 import InteractiveRing from './timeline/InteractiveRing'
+import MobilePagination from './timeline/MobilePagination'
 
 import { DataProvider } from '../context/useDataContext'
 
@@ -21,12 +22,15 @@ const Dashboard = () => {
           <div>
             <TimelineHeader />
           </div>
+          <YearsDisplay />
+          <MobileDisplayLine />
           <div>
             <NavControls />
             <TimelineSidebar />
+            <MobilePagination />
           </div>
         </ContentWrapper>
-        <YearsDisplay />
+
         <InteractiveRing />
       </DataProvider>
     </Container>
@@ -40,10 +44,18 @@ const Container = styled.div`
   border-right: 1px solid rgba(66, 86, 122, 0.1);
 
   width: min(75vw, 100%);
-  min-height: 100vh;
+  min-height: 100dvh;
   margin-left: clamp(16px, 17vw, 320px);
 
   background-color: ${({ theme }) => theme.colors.customWhite};
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding-left: 20px;
+    border-left: none;
+    border-right: none;
+    width: 100vw;
+  }
 `
 
 const ContentWrapper = styled.div`
@@ -55,12 +67,21 @@ const ContentWrapper = styled.div`
   min-height: 100vh;
   padding-top: clamp(60px, 16vh, 170px);
   padding-bottom: clamp(20px, 5vh, 60px);
+
+  @media (max-width: 768px) {
+    padding-top: 60px;
+    justify-content: flex-start;
+  }
 `
 
 const LinesWrapper = styled.div`
   position: absolute;
   inset: 0;
   pointer-events: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const VerticalLine = styled.span`
@@ -82,6 +103,19 @@ const HorizontalLine = styled.span`
   transform: translateY(-50%);
   background-color: rgba(66, 86, 122, 0.1);
   height: 1px;
+`
+
+const MobileDisplayLine = styled.div`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    width: calc(100% - 20px);
+    height: 1px;
+
+    margin-top: 60px;
+    background-color: #c7cdd9;
+  }
 `
 
 export default Dashboard
