@@ -7,8 +7,8 @@ interface TimelineCardProps {
 
 const TimelineCard = ({ year, description }: TimelineCardProps) => {
   return (
-    <CardContainer role="group" aria-labelledby={`Год-${year}`}>
-      <YearTitle aria-label={`Год-${year}`}>{year}</YearTitle>
+    <CardContainer aria-labelledby={`Год-${year}`}>
+      <YearTitle id={`Год-${year}`}>{year}</YearTitle>
 
       <EventDescription>{description}</EventDescription>
     </CardContainer>
@@ -26,7 +26,7 @@ const CardContainer = styled.article`
   align-items: flex-start;
   row-gap: clamp(8px, 1.2vh, 15px);
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     max-width: 200px;
   }
 `
@@ -40,7 +40,7 @@ const YearTitle = styled.h3`
   color: ${({ theme }) => theme.colors.customBlue};
 `
 
-const EventDescription = styled.article`
+const EventDescription = styled.p`
   word-break: break-word;
   white-space: normal;
   margin: 0;

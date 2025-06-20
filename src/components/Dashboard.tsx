@@ -12,24 +12,24 @@ import { ContextProvider } from '../context/useDataContext'
 const Dashboard = () => {
   return (
     <Container>
-      <LinesWrapper>
-        <VerticalLine />
-        <HorizontalLine />
+      <LinesWrapper aria-hidden="true">
+        <VerticalLine aria-hidden="true" />
+        <HorizontalLine aria-hidden="true" />
       </LinesWrapper>
 
       <ContentWrapper>
-        <div>
+        <header>
           <TimelineHeader />
-        </div>
+        </header>
         <ContextProvider>
           <YearsDisplay />
           <MobileDisplayLine />
           <InteractiveRing />
-          <div>
+          <nav aria-label="Навигация по периодам">
             <NavControls />
             <TimelineSidebar />
-            <MobilePagination />
-          </div>
+            <MobilePagination aria-hidden="true" />
+          </nav>
         </ContextProvider>
       </ContentWrapper>
     </Container>
@@ -48,7 +48,7 @@ const Container = styled.div`
 
   background-color: ${({ theme }) => theme.colors.customWhite};
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     margin-left: 0;
     padding-left: 20px;
     border-left: none;
@@ -57,7 +57,7 @@ const Container = styled.div`
   }
 `
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,7 +67,7 @@ const ContentWrapper = styled.div`
   padding-top: clamp(60px, 16vh, 170px);
   padding-bottom: clamp(20px, 5vh, 60px);
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     padding-top: 60px;
     justify-content: flex-start;
   }
@@ -78,7 +78,7 @@ const LinesWrapper = styled.div`
   inset: 0;
   pointer-events: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     display: none;
   }
 `
@@ -107,7 +107,7 @@ const HorizontalLine = styled.span`
 const MobileDisplayLine = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     display: block;
     width: calc(100% - 20px);
     height: 1px;

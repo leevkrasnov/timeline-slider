@@ -1,7 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
+import { getContainerSize } from '@/utils/getContainerSize'
+import {
+  getCoordinates,
+  calculateMarkers,
+  getActualCount,
+} from '@/utils/geometryHelpers'
 
 interface MarkerProps {
   $active: boolean
@@ -14,46 +20,33 @@ interface MarkerTextProps {
   $rotationAngle: number
 }
 
-const MAX_COUNT = 6
-const START_ANGLE = (7 * Math.PI) / 4
-const ANGLE_STEP = (2 * Math.PI) / MAX_COUNT
+const InteractiveRing = () => {
+  const { activeIndex, setActiveIndex, periodsLength } = useDataContext()
 
-const InteractiveRing: React.FC = () => {
-  const { activeIndex, setActiveIndex } = useDataContext()
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const [size, setSize] = useState(0)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  useEffect(() => {
-    if (!containerRef.current) return
-    const observer = new ResizeObserver(([entry]) => {
-      const newSize = Math.min(
-        entry.contentRect.width,
-        entry.contentRect.height
-      )
-      setSize(newSize)
-    })
-    observer.observe(containerRef.current)
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const size = getContainerSize(containerRef)
+  const actualCount = getActualCount(periodsLength)
 
-  const radius = size / 2
-  const center = size / 2
-  const rotationAngle = START_ANGLE - ANGLE_STEP * activeIndex
+  const { rotationAngle, radius, center, angleStep } = getCoordinates(
+    size,
+    activeIndex,
+    actualCount
+  )
 
   const markersData = useMemo(() => {
-    return Array.from({ length: MAX_COUNT }, (_, i) => ({
-      index: i,
-      left: center + radius * Math.cos(ANGLE_STEP * i),
-      top: center + radius * Math.sin(ANGLE_STEP * i),
-    }))
-  }, [size])
+    return calculateMarkers({
+      count: actualCount,
+      radius,
+      center,
+      angleStep,
+    })
+  }, [radius, center, angleStep])
 
-  const handleClick = useCallback((idx: number) => {
+  const handleClick = (idx: number) => {
     setActiveIndex(idx)
-  }, [])
+  }
 
   return (
     <RingContainer ref={containerRef}>
@@ -91,7 +84,7 @@ const RingContainer = styled.div`
   height: clamp(360px, 27vw, 530px);
   overflow: visible;
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     display: none;
   }
 `

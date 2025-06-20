@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: clamp(280px, 50vw, 970px);
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     position: static;
     width: 100%;
     transform: none;
@@ -55,7 +55,7 @@ const yearBase = css`
   cursor: default;
 `
 
-const Year = styled.span<{ $variant?: 'end' }>`
+const Year = styled.h2<{ $variant?: 'end' }>`
   ${yearBase};
   color: ${({ theme, $variant }) =>
     $variant === 'end' ? theme.colors.fuschia : theme.colors.iris};

@@ -11,6 +11,8 @@ export interface IPeriod {
   events: IData[]
 }
 
+export const MAX_PERIODS_COUNT = 6
+
 export const periods: IPeriod[] = [
   {
     from: 1500,

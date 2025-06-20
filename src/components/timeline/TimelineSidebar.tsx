@@ -15,6 +15,7 @@ import type { Swiper as SwiperType } from 'swiper'
 
 const TimelineSidebar = () => {
   const { events } = useDataContext()
+
   const [isVisible, setIsVisible] = useState<boolean>(true)
   const [displayEvents, setDisplayEvents] = useState<IData[]>(events)
 
@@ -106,7 +107,7 @@ const StyledSwiper = styled(Swiper)<{ $isVisible: boolean }>`
   transition: opacity 0.3s ease-in-out;
 
   .swiper-slide-next {
-    @media (max-width: 768px) {
+    @media (max-width: 599px) {
       opacity: 0.5;
     }
   }
@@ -141,7 +142,7 @@ const NavigationButton = styled.button`
     pointer-events: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     display: none;
   }
 `

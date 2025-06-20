@@ -6,12 +6,13 @@ interface AnimatedCounterProps {
   duration?: number
 }
 
-const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
+const AnimatedCounter = ({
   targetValue,
   initialValue,
   duration = 2000,
-}) => {
+}: AnimatedCounterProps) => {
   const [currentValue, setCurrentValue] = useState<number>(initialValue)
+
   const animationRef = useRef<number | null>(null)
   const startTimeRef = useRef<number | null>(null)
   const startValueRef = useRef<number>(initialValue)

@@ -28,7 +28,7 @@ const GradientBar = styled.span`
   );
   border-image-slice: 1;
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     display: none;
   }
 `

@@ -3,15 +3,15 @@ import { periods, IPeriod, IData } from '../data/periods'
 
 interface DataContextType {
   activeIndex: number
-  setActiveIndex: (idx: number) => void
+  setActiveIndex: (index: number) => void
   periods: IPeriod[]
+  periodsLength: number
   currentPeriod: IPeriod
   years: { from: number; to: number }
   events: IData[]
-  label: string
   next: () => void
   prev: () => void
-  goTo: (idx: number) => void
+  goTo: (index: number) => void
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined)
@@ -23,31 +23,34 @@ export const ContextProvider = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const periodsLength = periods.length
+
   const currentPeriod = useMemo(() => periods[activeIndex], [activeIndex])
+
   const years = useMemo(
     () => ({ from: currentPeriod.from, to: currentPeriod.to }),
     [currentPeriod]
   )
   const events = useMemo(() => currentPeriod.events, [currentPeriod])
-  const label = useMemo(() => currentPeriod.label, [currentPeriod])
 
-  const next = () => setActiveIndex((idx) => (idx + 1) % periods.length)
+  const next = () => setActiveIndex((index) => (index + 1) % periods.length)
+
   const prev = () =>
-    setActiveIndex((idx) => (idx - 1 + periods.length) % periods.length)
+    setActiveIndex((index) => (index - 1 + periods.length) % periods.length)
 
-  const goTo = (idx: number) => {
-    if (idx < 0 || idx >= periods.length) return
-    setActiveIndex(idx)
+  const goTo = (index: number) => {
+    if (index < 0 || index >= periods.length) return
+    setActiveIndex(index)
   }
 
   const value: DataContextType = {
     activeIndex,
     setActiveIndex,
     periods,
+    periodsLength,
     currentPeriod,
     years,
     events,
-    label,
     next,
     prev,
     goTo,
@@ -58,6 +61,8 @@ export const ContextProvider = ({
 
 export function useDataContext() {
   const ctx = useContext(DataContext)
+
   if (!ctx) throw new Error('useDataContext must be used within a DataProvider')
+
   return ctx
 }

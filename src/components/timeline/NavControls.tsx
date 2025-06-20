@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
-import { useDataContext } from '@/context/useDataContext'
 import NavArrows from './NavArrows'
-import MobilePagination from './MobilePagination'
+import { useDataContext } from '@/context/useDataContext'
+import { MAX_PERIODS_COUNT } from '@/data/periods'
+import { formatNum } from '@/utils/formatNum'
 
 const NavControls = () => {
   const { activeIndex } = useDataContext()
@@ -10,7 +11,7 @@ const NavControls = () => {
   return (
     <Wrapper>
       <SlideIndicator>
-        {String(activeIndex + 1).padStart(2, '0')}/06
+        {formatNum(activeIndex + 1)}/{formatNum(MAX_PERIODS_COUNT)}
       </SlideIndicator>
       <NavArrows />
     </Wrapper>
@@ -27,7 +28,7 @@ const Wrapper = styled.nav`
   height: clamp(50px, 8vh, 90px);
   margin-inline: clamp(16px, 4vw, 80px);
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     position: absolute;
     left: 20px;
     bottom: 15px;
