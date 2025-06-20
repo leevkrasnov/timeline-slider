@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react'
-import type { RefObject } from 'react'
 
-export const getContainerSize = (ref: RefObject<HTMLElement>) => {
+export const getContainerSize = (ref: React.RefObject<HTMLElement>) => {
   const [size, setSize] = useState<number>(0)
 
   useEffect(() => {
     if (!ref.current) return
 
-    const observer = new ResizeObserver(([entry]) => {
-      const newSize = Math.min(
-        entry.contentRect.width,
-        entry.contentRect.height
-      )
-      setSize(newSize)
+    const observeTarget = ref.current
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width } = entry.contentRect
+        setSize(width)
+      }
     })
 
-    observer.observe(ref.current)
+    resizeObserver.observe(observeTarget)
 
-    return () => {
-      observer.disconnect()
-    }
+    return () => resizeObserver.disconnect()
   }, [ref])
 
   return size

@@ -135,7 +135,7 @@ const NavigationButton = styled.button`
 
   background-color: #fff;
   box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   &.swiper-button-disabled {
     opacity: 0;
     visibility: hidden;

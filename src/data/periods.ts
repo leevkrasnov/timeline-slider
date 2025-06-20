@@ -15,8 +15,8 @@ export const MAX_PERIODS_COUNT = 6
 
 export const periods: IPeriod[] = [
   {
-    from: 1500,
-    to: 1599,
+    from: 1510,
+    to: 1575,
     label: 'XVI век',
     events: [
       {
@@ -58,8 +58,8 @@ export const periods: IPeriod[] = [
     ],
   },
   {
-    from: 1600,
-    to: 1699,
+    from: 1603,
+    to: 1688,
     label: 'XVII век',
     events: [
       {
@@ -84,7 +84,7 @@ export const periods: IPeriod[] = [
   },
   {
     from: 1700,
-    to: 1799,
+    to: 1789,
     label: 'XVIII век',
     events: [
       {
@@ -139,13 +139,38 @@ export const periods: IPeriod[] = [
   },
   {
     from: 1900,
-    to: 1999,
+    to: 1970,
     label: 'XX век',
-    events: [],
+    events: [
+      {
+        id: 14,
+        year: 1914,
+        description:
+          'Начало Первой мировой войны - глобальный конфликт, изменивший карту мира.',
+      },
+      {
+        id: 15,
+        year: 1917,
+        description:
+          'Октябрьская революция в России - коренной переворот в истории страны.',
+      },
+      {
+        id: 16,
+        year: 1939,
+        description:
+          'Начало Второй мировой войны - крупнейший вооружённый конфликт в истории человечества.',
+      },
+      {
+        id: 17,
+        year: 1969,
+        description:
+          'Высадка человека на Луну - символ технологического прогресса и космической эры.',
+      },
+    ],
   },
   {
     from: 2000,
-    to: 2099,
+    to: 2020,
     label: 'XXI век',
     events: [
       {

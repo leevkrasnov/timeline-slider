@@ -10,7 +10,7 @@ const MobilePagination = () => {
         <Dot
           key={idx}
           aria-label={`Перейти к периоду ${idx + 1}`}
-          isActive={idx === activeIndex}
+          $isActive={idx === activeIndex}
           onClick={() => goTo(idx)}
         />
       ))}
@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   display: none;
 
   @media (max-width: 599px) {
+    position: relavite;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,14 +33,14 @@ const Wrapper = styled.div`
   }
 `
 
-const Dot = styled.button<{ isActive: boolean }>`
+const Dot = styled.button<{ $isActive: boolean }>`
   width: 6px;
   height: 6px;
   padding: 0;
   border-radius: 50%;
   border: none;
-  background-color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.blackBlue : 'rgba(66,86,122,0.4)'};
+  background-color: ${({ $isActive, theme }) =>
+    $isActive ? theme.colors.blackBlue : 'rgba(66,86,122,0.4)'};
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 `

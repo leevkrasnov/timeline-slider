@@ -2,12 +2,12 @@ import { useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
-import { getContainerSize } from '@/utils/getContainerSize'
 import {
   getCoordinates,
   calculateMarkers,
   getActualCount,
 } from '@/utils/geometryHelpers'
+import { getContainerSize } from '@/utils/getContainerSize'
 
 interface MarkerProps {
   $active: boolean
@@ -26,7 +26,9 @@ const InteractiveRing = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const containerRef = useRef<HTMLDivElement | null>(null)
+
   const size = getContainerSize(containerRef)
+
   const actualCount = getActualCount(periodsLength)
 
   const { rotationAngle, radius, center, angleStep } = getCoordinates(
@@ -135,10 +137,13 @@ const Marker = styled.button<MarkerProps>`
 const MarkerText = styled.span<MarkerTextProps>`
   font-size: clamp(12px, 1vw, 20px);
   color: ${({ theme }) => theme.colors.blackBlue};
+  transition: opacity 0.3s ease;
+  opacity: 1;
   transform: rotate(${({ $rotationAngle }) => -$rotationAngle}rad);
   ${({ $visible }) =>
     !$visible &&
     css`
+      opacity: 0;
       position: absolute;
       width: 1px;
       height: 1px;

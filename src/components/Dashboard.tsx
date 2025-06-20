@@ -1,13 +1,16 @@
 import styled from 'styled-components'
+import React, { Suspense } from 'react'
 
 import TimelineHeader from './timeline/TimelineHeader'
 import YearsDisplay from './timeline/YearsDisplay'
 import NavControls from './timeline/NavControls'
-import TimelineSidebar from './timeline/TimelineSidebar'
-import InteractiveRing from './timeline/InteractiveRing'
 import MobilePagination from './timeline/MobilePagination'
+import LoadingSpinner from './shared/LoadingSpinner'
 
 import { ContextProvider } from '../context/useDataContext'
+
+const TimelineSidebar = React.lazy(() => import('./timeline/TimelineSidebar'))
+const InteractiveRing = React.lazy(() => import('./timeline/InteractiveRing'))
 
 const Dashboard = () => {
   return (
@@ -23,11 +26,18 @@ const Dashboard = () => {
         </header>
         <ContextProvider>
           <YearsDisplay />
+
           <MobileDisplayLine />
+
           <InteractiveRing />
+
           <nav aria-label="Навигация по периодам">
             <NavControls />
-            <TimelineSidebar />
+
+            <Suspense fallback={<LoadingSpinner />}>
+              <TimelineSidebar />
+            </Suspense>
+
             <MobilePagination aria-hidden="true" />
           </nav>
         </ContextProvider>
@@ -63,7 +73,7 @@ const ContentWrapper = styled.main`
   justify-content: space-between;
 
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: clamp(60px, 16vh, 170px);
   padding-bottom: clamp(20px, 5vh, 60px);
 
