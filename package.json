@@ -9,8 +9,9 @@
     "not op_mini all"
   ],
   "scripts": {
-    "start": "webpack serve --open",
-    "build": "webpack --mode production"
+    "dev": "webpack serve --open",
+    "build": "webpack --mode production",
+    "preview": "serve dist"
   },
   "keywords": [],
   "author": "",
