@@ -21,9 +21,9 @@
       "@/*": ["src/*"]
     },
 
-    "noImplicitAny": true, // запрещает неявный any
-    "strictNullChecks": true, // строго проверяет null/undefined
-    "strictFunctionTypes": true, // строгая проверка типов функций
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
 
     "alwaysStrict": true,
 

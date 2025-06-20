@@ -121,9 +121,9 @@ const NoEventsMessage = styled.div`
 
 const NavigationButton = styled.button`
   flex-shrink: 0;
-  width: clamp(36px, 3vw, 40px);
-  height: clamp(36px, 3vw, 40px);
-  margin-inline: clamp(10px, 1vw, 20px);
+  width: clamp(32px, 3vw, 40px);
+  height: clamp(32px, 3vw, 40px);
+  margin-inline: clamp(20px, 1vw, 30px);
 
   border-radius: 50%;
   border: none;
