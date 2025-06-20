@@ -4,7 +4,7 @@ const LoadingSpinner = () => {
   return (
     <RingWrapper>
       <StyledSvg viewBox="0 0 100 100">
-        <Circle cx="50" cy="50" r="45" />
+        <Circle cx="50" cy="50" r="45" strokeWidth={5} />
       </StyledSvg>
     </RingWrapper>
   )
@@ -21,7 +21,7 @@ const spin = keyframes`
 
 const RingWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 140px;
   margin-top: clamp(20px, 4vh, 50px);
   z-index: 10;
 
@@ -43,7 +43,6 @@ const StyledSvg = styled.svg`
 
 const Circle = styled.circle`
   fill: none;
-  stroke-width: 2px;
   stroke: ${({ theme }) => theme.colors.blackBlue};
   stroke-linecap: round;
 
