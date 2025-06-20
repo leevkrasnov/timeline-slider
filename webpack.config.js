@@ -5,7 +5,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-// To enable gzip & Brotli compression, install: compression-webpack-plugin
 import CompressionPlugin from 'compression-webpack-plugin'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -14,6 +13,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 export default {
   mode: isProd ? 'production' : 'development',
+  stats: 'minimal',
 
   cache: {
     type: 'filesystem',
