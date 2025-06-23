@@ -1,7 +1,7 @@
 {
   "name": "timeline-slider",
   "version": "1.0.0",
-  "description": "",
+  "description": "An interactive, responsive slider for visualizing historical events with timeline navigation and swipe support.",
   "main": "index.js",
   "browserslist": [
     ">0.2%",
