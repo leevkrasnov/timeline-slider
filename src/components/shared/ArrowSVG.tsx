@@ -17,7 +17,7 @@ const ArrowSVG = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M1 1L6 6L1 11" stroke={color} strokeWidth={2} />
+      <path d="M1 1L6 6L1 11" stroke={color} strokeWidth={1.5} />
     </StyledSVG>
   )
 }

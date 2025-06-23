@@ -50,6 +50,14 @@ const NavArrow = styled.button`
   cursor: pointer;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+
+  transition:
+    background-color 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    background-color: #fff;
+  }
 `
 
 export default NavArrows
