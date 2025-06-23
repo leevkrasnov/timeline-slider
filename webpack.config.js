@@ -1,6 +1,5 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
-import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
@@ -77,10 +76,7 @@ export default {
       filename: isProd ? '[name].[contenthash:8].css' : '[name].css',
       chunkFilename: isProd ? '[id].[contenthash:8].css' : '[id].css',
     }),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/,
-    }),
+
     isProd && new CompressionPlugin({ algorithm: 'gzip' }),
     isProd &&
       new CompressionPlugin({
@@ -110,11 +106,6 @@ export default {
           name: 'vendors',
           priority: -10,
           enforce: true,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
         },
       },
     },
