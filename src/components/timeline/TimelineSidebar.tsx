@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Keyboard, Navigation, A11y, FreeMode } from 'swiper/modules'
+import {
+  Keyboard,
+  Navigation,
+  A11y,
+  FreeMode,
+  Mousewheel,
+} from 'swiper/modules'
 import styled from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
@@ -50,7 +56,7 @@ const TimelineSidebar = () => {
               swiperRef.current = swiper
             }}
             $isVisible={isVisible}
-            modules={[Navigation, A11y, Keyboard, FreeMode]}
+            modules={[Navigation, A11y, Keyboard, FreeMode, Mousewheel]}
             navigation={{
               prevEl: '.prev-button',
               nextEl: '.next-button',
@@ -58,6 +64,7 @@ const TimelineSidebar = () => {
             keyboard={{
               enabled: true,
             }}
+            mousewheel={true}
             freeMode={true}
             slidesPerView="auto"
             spaceBetween={60}
