@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const HeaderTitle = () => {
@@ -46,4 +45,4 @@ const Title = styled.h1`
   }
 `
 
-export default React.memo(HeaderTitle)
+export default HeaderTitle

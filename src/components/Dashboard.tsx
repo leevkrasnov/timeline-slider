@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import React, { Suspense } from 'react'
 
-import HeaderTitle from './timeline/HeaderTitle'
 import YearsDisplay from './timeline/YearsDisplay'
 import NavControls from './timeline/NavControls'
 import MobilePagination from './timeline/MobilePagination'
@@ -14,17 +13,13 @@ const SliderSidebar = React.lazy(() => import('./timeline/SliderSidebar'))
 
 const Dashboard = () => {
   return (
-    <Container>
+    <>
       <LinesWrapper aria-hidden="true">
         <VerticalLine aria-hidden="true" />
         <HorizontalLine aria-hidden="true" />
       </LinesWrapper>
 
       <ContentWrapper>
-        <header>
-          <HeaderTitle />
-        </header>
-
         <ContextProvider>
           <YearsDisplay />
 
@@ -42,46 +37,18 @@ const Dashboard = () => {
           <InteractiveRing />
         </ContextProvider>
       </ContentWrapper>
-    </Container>
+    </>
   )
 }
 
-const Container = styled.div`
-  position: relative;
-
-  min-height: 100dvh;
-  width: min(75vw, 100vw);
-  margin-left: clamp(1rem, 17vw, 20rem);
-
-  border-left: 1px solid rgba(66, 86, 122, 0.1);
-  border-right: 1px solid rgba(66, 86, 122, 0.1);
-
-  background-color: ${({ theme }) => theme.colors.customWhite};
-
-  @media (max-width: ${({ theme }) => theme.size.small}) {
-    margin-left: 0;
-    padding-left: 1.25rem;
-    border-left: none;
-    border-right: none;
-    width: 100dvw;
-  }
-`
-
 const ContentWrapper = styled.main`
   width: 100%;
-  min-height: 100dvh;
 
   padding-top: clamp(3.75rem, 16vh, 10.625rem);
   padding-bottom: clamp(1.25rem, 5vh, 3.75rem);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
   @media (max-width: ${({ theme }) => theme.size.small}) {
     padding-top: 3.75rem;
-
-    justify-content: space-between;
   }
 `
 

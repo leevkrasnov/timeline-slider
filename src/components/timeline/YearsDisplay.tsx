@@ -37,11 +37,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   @media (max-width: ${({ theme }) => theme.size.small}) {
-    position: static;
-    width: calc(100% - 1.25rem);
-    transform: none;
-    margin-top: 3.75rem;
-
+    top: 45%;
     justify-content: center;
     column-gap: 1.5rem;
   }
