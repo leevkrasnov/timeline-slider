@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React, { Suspense } from 'react'
 
-import TimelineHeader from './timeline/TimelineHeader'
+import HeaderTitle from './timeline/HeaderTitle'
 import YearsDisplay from './timeline/YearsDisplay'
 import NavControls from './timeline/NavControls'
 import MobilePagination from './timeline/MobilePagination'
@@ -9,7 +9,7 @@ import LoadingSpinner from './shared/LoadingSpinner'
 
 import { ContextProvider } from '../context/useDataContext'
 
-const TimelineSidebar = React.lazy(() => import('./timeline/TimelineSidebar'))
+const SliderSidebar = React.lazy(() => import('./timeline/SliderSidebar'))
 const InteractiveRing = React.lazy(() => import('./timeline/InteractiveRing'))
 
 const Dashboard = () => {
@@ -22,24 +22,24 @@ const Dashboard = () => {
 
       <ContentWrapper>
         <header>
-          <TimelineHeader />
+          <HeaderTitle />
         </header>
+
         <ContextProvider>
           <YearsDisplay />
 
-          <MobileDisplayLine />
-
-          <InteractiveRing />
-
           <nav aria-label="Навигация по периодам">
+            <MobileDisplayHorizontalLine />
             <NavControls />
 
             <Suspense fallback={<LoadingSpinner />}>
-              <TimelineSidebar />
+              <SliderSidebar />
             </Suspense>
 
             <MobilePagination aria-hidden="true" />
           </nav>
+
+          <InteractiveRing />
         </ContextProvider>
       </ContentWrapper>
     </Container>
@@ -63,7 +63,7 @@ const Container = styled.div`
     padding-left: 20px;
     border-left: none;
     border-right: none;
-    width: 100vw;
+    width: 100dvw;
   }
 `
 
@@ -74,12 +74,13 @@ const ContentWrapper = styled.main`
 
   width: 100%;
   min-height: 100dvh;
+
   padding-top: clamp(60px, 16vh, 170px);
   padding-bottom: clamp(20px, 5vh, 60px);
 
   @media (max-width: 599px) {
     padding-top: 60px;
-    justify-content: flex-start;
+    justify-content: space-between;
   }
 `
 
@@ -114,7 +115,7 @@ const HorizontalLine = styled.span`
   height: 1px;
 `
 
-const MobileDisplayLine = styled.div`
+const MobileDisplayHorizontalLine = styled.div`
   display: none;
 
   @media (max-width: 599px) {

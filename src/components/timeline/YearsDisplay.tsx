@@ -37,11 +37,11 @@ const Wrapper = styled.div`
 
   @media (max-width: 599px) {
     position: static;
-    width: 100%;
+    width: calc(100% - 20px);
     transform: none;
     margin-top: 60px;
 
-    justify-content: flex-start;
+    justify-content: center;
     column-gap: 25px;
   }
 `
