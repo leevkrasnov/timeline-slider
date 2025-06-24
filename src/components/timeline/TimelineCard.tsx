@@ -35,7 +35,6 @@ const YearTitle = styled.h3`
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(16px, 1.3vw, 25px);
   line-height: 1.2;
-  cursor: default;
 
   color: ${({ theme }) => theme.colors.customBlue};
 `
@@ -47,7 +46,6 @@ const EventDescription = styled.p`
 
   font-size: clamp(14px, 1.2vw, 20px);
   line-height: 1.5;
-  cursor: default;
 `
 
 export default TimelineCard

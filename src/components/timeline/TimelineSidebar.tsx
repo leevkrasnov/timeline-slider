@@ -56,6 +56,7 @@ const TimelineSidebar = () => {
               swiperRef.current = swiper
             }}
             $isVisible={isVisible}
+            grabCursor={true}
             modules={[Navigation, A11y, Keyboard, FreeMode, Mousewheel]}
             navigation={{
               prevEl: '.prev-button',
@@ -67,7 +68,6 @@ const TimelineSidebar = () => {
             mousewheel={true}
             freeMode={true}
             slidesPerView="auto"
-            spaceBetween={60}
             a11y={{
               enabled: true,
               prevSlideMessage: 'Предыдущий слайд',
@@ -76,7 +76,10 @@ const TimelineSidebar = () => {
             slideNextClass="swiper-slide-next"
           >
             {displayEvents.map((item) => (
-              <SwiperSlide key={item.id} style={{ width: 'auto' }}>
+              <SwiperSlide
+                key={item.id}
+                style={{ width: 'auto', paddingRight: '80px' }}
+              >
                 <TimelineCard year={item.year} description={item.description} />
               </SwiperSlide>
             ))}
