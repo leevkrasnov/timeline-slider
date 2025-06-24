@@ -59,12 +59,18 @@ export default {
         type: 'asset/resource',
         generator: { filename: 'fonts/[name][ext]' },
       },
+      {
+        test: /\.ico$/i,
+        type: 'asset/resource',
+        generator: { filename: '[name][ext]' },
+      },
     ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.ico',
       inject: 'body',
       minify: isProd && {
         removeComments: true,
