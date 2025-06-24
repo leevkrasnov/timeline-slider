@@ -16,15 +16,17 @@ const SliderCard = ({ year, description }: TimelineCardProps) => {
 }
 
 const CardContainer = styled.article`
+  height: clamp(7.5rem, 8vw, 10rem);
   width: auto;
   max-width: 25rem;
 
   padding-right: clamp(1.5rem, 4vw, 5rem);
+  padding-top: clamp(0.625rem, 1.5vw, 1rem);
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   row-gap: clamp(0.5rem, 1.2vh, 1rem);
 
   @media (max-width: ${({ theme }) => theme.size.small}) {

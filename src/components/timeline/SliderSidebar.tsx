@@ -51,7 +51,7 @@ const SliderSidebar = () => {
             <ArrowSVG direction="left" color="#3877EE" />
           </NavigationButton>
 
-          <StyledSwiper
+          <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper
             }}
@@ -86,7 +86,7 @@ const SliderSidebar = () => {
                 <SliderCard year={item.year} description={item.description} />
               </SwiperSlide>
             ))}
-          </StyledSwiper>
+          </Swiper>
 
           <NavigationButton
             className="next-button"
@@ -109,16 +109,11 @@ const TimelineSliderSection = styled.section`
 
   display: flex;
   align-items: center;
-  justify-content: center;
 
   z-index: 10;
-`
 
-const StyledSwiper = styled(Swiper)`
-  .swiper-slide-next {
-    @media (max-width: 22.5rem) {
-      opacity: 0.5;
-    }
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    margin-top: 0.5rem;
   }
 `
 

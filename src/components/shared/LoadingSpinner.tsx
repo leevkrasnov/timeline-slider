@@ -28,6 +28,10 @@ const RingWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    margin-top: 0.5rem;
+  }
 `
 
 const StyledSvg = styled.svg`
@@ -35,7 +39,7 @@ const StyledSvg = styled.svg`
   height: 1.875rem;
   animation: ${spin} 1s linear infinite;
 
-  @media (max-width: 37rem) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     width: 1rem;
     height: 1rem;
   }
