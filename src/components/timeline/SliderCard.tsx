@@ -5,7 +5,7 @@ interface TimelineCardProps {
   description: string
 }
 
-const TimelineCard = ({ year, description }: TimelineCardProps) => {
+const SliderCard = ({ year, description }: TimelineCardProps) => {
   return (
     <CardContainer aria-labelledby={`Год-${year}`}>
       <YearTitle id={`Год-${year}`}>{year}</YearTitle>
@@ -20,6 +20,7 @@ const CardContainer = styled.article`
 
   width: auto;
   max-width: 400px;
+  padding-right: clamp(25px, 4vw, 80px);
 
   display: flex;
   flex-direction: column;
@@ -48,4 +49,4 @@ const EventDescription = styled.p`
   line-height: 1.5;
 `
 
-export default TimelineCard
+export default SliderCard

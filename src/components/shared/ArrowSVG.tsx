@@ -28,7 +28,7 @@ const StyledSVG = styled.svg<ArrowSVGProps>`
   transform: ${(props) =>
     props.direction === 'left' ? 'rotate(180deg)' : 'rotate(0deg)'};
 
-  @media (max-width: 768px) {
+  @media (max-width: 599px) {
     width: 6.25px;
     height: 6.25px;
   }

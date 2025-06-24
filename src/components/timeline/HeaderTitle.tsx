@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const TimelineHeader = () => {
+const HeaderTitle = () => {
   return (
     <Wrapper>
       <GradientBar aria-hidden="true" />
@@ -43,4 +43,4 @@ const Title = styled.h1`
   }
 `
 
-export default TimelineHeader
+export default HeaderTitle

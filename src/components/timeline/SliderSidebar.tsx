@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components'
 
 import { useDataContext } from '@/context/useDataContext'
-import TimelineCard from './TimelineCard'
+import SliderCard from './SliderCard'
 import ArrowSVG from '@/components/shared/ArrowSVG'
 
 import 'swiper/css'
@@ -19,7 +19,7 @@ import 'swiper/css/navigation'
 import type { IData } from '@/data/periods'
 import type { Swiper as SwiperType } from 'swiper'
 
-const TimelineSidebar = () => {
+const SliderSidebar = () => {
   const { events } = useDataContext()
 
   const [isVisible, setIsVisible] = useState<boolean>(true)
@@ -76,11 +76,8 @@ const TimelineSidebar = () => {
             slideNextClass="swiper-slide-next"
           >
             {displayEvents.map((item) => (
-              <SwiperSlide
-                key={item.id}
-                style={{ width: 'auto', paddingRight: '80px' }}
-              >
-                <TimelineCard year={item.year} description={item.description} />
+              <SwiperSlide key={item.id} style={{ width: 'auto' }}>
+                <SliderCard year={item.year} description={item.description} />
               </SwiperSlide>
             ))}
           </StyledSwiper>
@@ -107,7 +104,7 @@ const TimelineSliderSection = styled.section`
 
   max-width: 100%;
   height: 140px;
-  margin-top: clamp(20px, 4vh, 50px);
+  margin-top: clamp(10px, 2vh, 50px);
   z-index: 10;
 `
 
@@ -117,7 +114,7 @@ const StyledSwiper = styled(Swiper)<{ $isVisible: boolean }>`
   transition: opacity 0.3s ease-in-out;
 
   .swiper-slide-next {
-    @media (max-width: 599px) {
+    @media (max-width: 320px) {
       opacity: 0.5;
     }
   }
@@ -157,4 +154,4 @@ const NavigationButton = styled.button`
   }
 `
 
-export default TimelineSidebar
+export default SliderSidebar
