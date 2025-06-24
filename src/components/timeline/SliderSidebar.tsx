@@ -22,7 +22,7 @@ import type { Swiper as SwiperType } from 'swiper'
 const SliderSidebar = () => {
   const { events } = useDataContext()
 
-  const [isVisible, setIsVisible] = useState<boolean>(true)
+  const [isVisible, setIsVisible] = useState<boolean>(false)
   const [displayEvents, setDisplayEvents] = useState<IData[]>(events)
 
   const swiperRef = useRef<SwiperType | null>(null)
@@ -35,13 +35,13 @@ const SliderSidebar = () => {
 
       setIsVisible(true)
       swiperRef.current?.slideTo(0)
-    }, 300)
+    }, 200)
     return () => clearTimeout(timer)
   }, [events])
 
   return (
     <TimelineSliderSection role="region" aria-label="Исторические события">
-      {events.length > 0 ? (
+      {displayEvents.length > 0 ? (
         <>
           <NavigationButton
             className="prev-button"
@@ -55,7 +55,6 @@ const SliderSidebar = () => {
             onSwiper={(swiper) => {
               swiperRef.current = swiper
             }}
-            $isVisible={isVisible}
             grabCursor={true}
             modules={[Navigation, A11y, Keyboard, FreeMode, Mousewheel]}
             navigation={{
@@ -76,7 +75,14 @@ const SliderSidebar = () => {
             slideNextClass="swiper-slide-next"
           >
             {displayEvents.map((item) => (
-              <SwiperSlide key={item.id} style={{ width: 'auto' }}>
+              <SwiperSlide
+                key={item.id}
+                style={{
+                  width: 'auto',
+                  opacity: isVisible ? 1 : 0,
+                  transition: 'opacity 0.3s ease-in-out',
+                }}
+              >
                 <SliderCard year={item.year} description={item.description} />
               </SwiperSlide>
             ))}
@@ -98,7 +104,8 @@ const SliderSidebar = () => {
 }
 
 const TimelineSliderSection = styled.section`
-  margin-top: clamp(10px, 2vh, 50px);
+  height: 8.75rem;
+  margin-top: clamp(1.25rem, 4vh, 3rem);
 
   display: flex;
   align-items: center;
@@ -107,10 +114,7 @@ const TimelineSliderSection = styled.section`
   z-index: 10;
 `
 
-const StyledSwiper = styled(Swiper)<{ $isVisible: boolean }>`
-  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-  transition: opacity 0.3s ease-in-out;
-
+const StyledSwiper = styled(Swiper)`
   .swiper-slide-next {
     @media (max-width: 22.5rem) {
       opacity: 0.5;
