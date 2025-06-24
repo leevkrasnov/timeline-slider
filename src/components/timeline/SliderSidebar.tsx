@@ -35,7 +35,7 @@ const SliderSidebar = () => {
 
       setIsVisible(true)
       swiperRef.current?.slideTo(0)
-    }, 200)
+    }, 300)
     return () => clearTimeout(timer)
   }, [events])
 
