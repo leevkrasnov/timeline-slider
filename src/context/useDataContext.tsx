@@ -33,13 +33,13 @@ export const ContextProvider = ({
   )
   const events = useMemo(() => currentPeriod.events, [currentPeriod])
 
-  const next = () => setActiveIndex((index) => (index + 1) % periods.length)
+  const next = () => setActiveIndex((index) => (index + 1) % periodsLength)
 
   const prev = () =>
-    setActiveIndex((index) => (index - 1 + periods.length) % periods.length)
+    setActiveIndex((index) => (index - 1 + periodsLength) % periodsLength)
 
   const goTo = (index: number) => {
-    if (index < 0 || index >= periods.length) return
+    if (index < 0 || index >= periodsLength) return
     setActiveIndex(index)
   }
 
