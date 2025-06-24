@@ -32,8 +32,8 @@ const InteractiveRing = () => {
     })
   }, [radius, center, angleStep])
 
-  const handleClick = (idx: number) => {
-    setActiveIndex(idx)
+  const handleClick = (index: number) => {
+    setActiveIndex(index)
   }
 
   return (
@@ -47,7 +47,7 @@ const InteractiveRing = () => {
             <Marker
               key={index}
               className={`marker ${isActive ? 'active' : ''} ${isHovered ? 'hovered' : ''}`}
-              style={{ left: `${left}px`, top: `${top}px` }}
+              style={{ left: `${left}rem`, top: `${top}rem` }}
               onClick={() => handleClick(index)}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -72,58 +72,69 @@ const RingContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(360px, 27vw, 530px);
-  height: clamp(360px, 27vw, 530px);
+
+  width: clamp(16rem, 27vw, 33rem);
+  height: clamp(16rem, 27vw, 33rem);
+
   overflow: visible;
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     display: none;
   }
 `
 
 const RotatingRing = styled.div`
   position: relative;
+
   width: 100%;
   height: 100%;
+
   border-radius: 50%;
   border: 1px solid rgba(48, 62, 88, 0.2);
+
   transition: transform 0.5s ease-in-out;
 `
 
 const Marker = styled.button`
   position: absolute;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
+
+  width: 0.375rem;
+  height: 0.375rem;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
   transition: all 0.3s ease;
 
-  width: 6px;
-  height: 6px;
   background-color: ${({ theme }) => theme.colors.blackBlue};
 
   &.active,
   &.hovered {
-    width: clamp(25px, 2.5vw, 50px);
-    height: clamp(25px, 2.5vw, 50px);
-    background-color: ${({ theme }) => theme.colors.customWhite};
+    width: clamp(1.5rem, 2.5vw, 3.125rem);
+    height: clamp(1.5rem, 2.5vw, 3.125rem);
+
     border: 1px solid rgba(48, 62, 88, 0.5);
+    background-color: ${({ theme }) => theme.colors.customWhite};
   }
 `
 
 const MarkerText = styled.span`
-  font-size: clamp(12px, 1vw, 20px);
+  font-size: clamp(0.75rem, 1vw, 1.25rem);
   color: ${({ theme }) => theme.colors.blackBlue};
   transition: opacity 0.3s ease;
 
   &.hidden {
-    opacity: 0;
     position: absolute;
     width: 1px;
     height: 1px;
+
+    opacity: 0;
     margin: -1px;
     padding: 0;
     overflow: hidden;

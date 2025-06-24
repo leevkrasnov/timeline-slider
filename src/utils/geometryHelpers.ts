@@ -49,8 +49,9 @@ export function calculateMarkers({
 
   for (let i = 0; i < count; i++) {
     const angle = angleStep * i
-    const left = center + radius * Math.cos(angle)
-    const top = center + radius * Math.sin(angle)
+    // деления на 16 для перевода 'px' to 'rem'
+    const left = (center + radius * Math.cos(angle)) / 16
+    const top = (center + radius * Math.sin(angle)) / 16
 
     markers.push({ index: i, left, top })
   }

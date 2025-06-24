@@ -98,58 +98,59 @@ const SliderSidebar = () => {
 }
 
 const TimelineSliderSection = styled.section`
+  margin-top: clamp(10px, 2vh, 50px);
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  max-width: 100%;
-  height: 140px;
-  margin-top: clamp(10px, 2vh, 50px);
   z-index: 10;
 `
 
 const StyledSwiper = styled(Swiper)<{ $isVisible: boolean }>`
-  height: clamp(120px, 12.5vh, 135px);
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transition: opacity 0.3s ease-in-out;
 
   .swiper-slide-next {
-    @media (max-width: 320px) {
+    @media (max-width: 22.5rem) {
       opacity: 0.5;
     }
   }
 `
 
 const NoEventsMessage = styled.div`
-  font-size: clamp(14px, 1.5vw, 24px);
+  font-size: clamp(0.875rem, 1.5vw, 1.5rem);
   color: rgba(66, 86, 122, 0.5);
   font-style: italic;
 `
 
 const NavigationButton = styled.button`
+  width: clamp(1.75rem, 2.5vw, 2.5rem);
+  height: clamp(1.75rem, 2.5vw, 2.5rem);
+
+  margin-inline: clamp(1.25rem, 1vw, 1.875rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  width: clamp(32px, 3vw, 40px);
-  height: clamp(32px, 3vw, 40px);
-  margin-inline: clamp(20px, 1vw, 30px);
 
   border-radius: 50%;
   border: none;
   cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   background-color: #fff;
   box-shadow: 0 0 15px rgba(56, 119, 238, 0.1);
+
   transition: opacity 0.3s ease-in-out;
+
   &.swiper-button-disabled {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
   }
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     display: none;
   }
 `

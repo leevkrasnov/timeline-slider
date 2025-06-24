@@ -23,14 +23,14 @@ const ArrowSVG = ({
 }
 
 const StyledSVG = styled.svg<ArrowSVGProps>`
-  width: 12px;
-  height: 12px;
+  width: 0.75rem;
+  height: 0.75rem;
   transform: ${(props) =>
     props.direction === 'left' ? 'rotate(180deg)' : 'rotate(0deg)'};
 
-  @media (max-width: 599px) {
-    width: 6.25px;
-    height: 6.25px;
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    width: 0.4rem;
+    height: 0.4rem;
   }
 `
 

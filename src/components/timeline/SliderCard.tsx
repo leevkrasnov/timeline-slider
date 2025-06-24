@@ -16,37 +16,37 @@ const SliderCard = ({ year, description }: TimelineCardProps) => {
 }
 
 const CardContainer = styled.article`
-  height: 100%;
-
   width: auto;
-  max-width: 400px;
-  padding-right: clamp(25px, 4vw, 80px);
+  max-width: 25rem;
+
+  padding-right: clamp(1.5rem, 4vw, 5rem);
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  row-gap: clamp(8px, 1.2vh, 15px);
+  justify-content: center;
+  row-gap: clamp(0.5rem, 1.2vh, 1rem);
 
-  @media (max-width: 599px) {
-    max-width: 200px;
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    max-width: 15rem;
   }
 `
 
 const YearTitle = styled.h3`
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(16px, 1.3vw, 25px);
+  font-size: clamp(1rem, 1.3vw, 1.5rem);
   line-height: 1.2;
 
   color: ${({ theme }) => theme.colors.customBlue};
 `
 
 const EventDescription = styled.p`
-  word-break: break-word;
-  white-space: normal;
   margin: 0;
 
-  font-size: clamp(14px, 1.2vw, 20px);
+  font-size: clamp(0.875rem, 1.2vw, 1.25rem);
   line-height: 1.5;
+  word-break: break-word;
+  white-space: normal;
 `
 
 export default SliderCard

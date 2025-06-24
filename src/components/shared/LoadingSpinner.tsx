@@ -21,8 +21,8 @@ const spin = keyframes`
 
 const RingWrapper = styled.div`
   width: 100%;
-  height: 140px;
-  margin-top: clamp(20px, 4vh, 50px);
+  height: 8.75rem;
+  margin-top: clamp(1.25rem, 4vh, 3rem);
   z-index: 10;
 
   display: flex;
@@ -31,13 +31,13 @@ const RingWrapper = styled.div`
 `
 
 const StyledSvg = styled.svg`
-  width: 30px;
-  height: 30px;
+  width: 1.875rem;
+  height: 1.875rem;
   animation: ${spin} 1s linear infinite;
 
-  @media (max-width: 599px) {
-    width: 16px;
-    height: 16px;
+  @media (max-width: 37rem) {
+    width: 1rem;
+    height: 1rem;
   }
 `
 

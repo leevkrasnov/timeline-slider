@@ -4,10 +4,10 @@ import { useDataContext } from '@/context/useDataContext'
 import ArrowSVG from '@/components/shared/ArrowSVG'
 
 const NavArrows = () => {
-  const { next, prev, activeIndex, periods } = useDataContext()
+  const { next, prev, activeIndex, periodsLength } = useDataContext()
 
   const isFirst = activeIndex === 0
-  const isLast = activeIndex === periods.length - 1
+  const isLast = activeIndex === periodsLength - 1
 
   return (
     <ButtonGroup>
@@ -31,13 +31,14 @@ const NavArrows = () => {
 
 const ButtonGroup = styled.div`
   width: 100%;
+
   display: flex;
   justify-content: space-between;
 `
 
 const NavArrow = styled.button`
-  width: clamp(25px, 2.5vw, 50px);
-  height: clamp(25px, 2.5vw, 50px);
+  width: clamp(1.75rem, 2.5vw, 3.125rem);
+  height: clamp(1.75rem, 2.5vw, 3.125rem);
 
   display: flex;
   justify-content: center;
@@ -47,9 +48,9 @@ const NavArrow = styled.button`
   border: 1px solid rgba(66, 86, 122, 0.5);
   background-color: ${({ theme }) => theme.colors.customWhite};
 
-  cursor: pointer;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+  cursor: pointer;
 
   transition:
     background-color 0.3s ease,

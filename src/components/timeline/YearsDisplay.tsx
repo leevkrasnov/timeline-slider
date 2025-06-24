@@ -30,28 +30,30 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
+  width: clamp(17.5rem, 50vw, 60rem);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: clamp(280px, 50vw, 970px);
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     position: static;
-    width: calc(100% - 20px);
+    width: calc(100% - 1.25rem);
     transform: none;
-    margin-top: 60px;
+    margin-top: 3.75rem;
 
     justify-content: center;
-    column-gap: 25px;
+    column-gap: 1.5rem;
   }
 `
 
 const yearBase = css`
-  font-size: clamp(56px, 10vw, 200px);
+  font-size: clamp(3.5rem, 10vw, 12.5rem);
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: -0.02em;
   white-space: nowrap;
+
   cursor: default;
 `
 

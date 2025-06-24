@@ -6,4 +6,7 @@ export const baseTheme = {
     iris: '#5D5FEF',
     fuschia: '#EF5DA8',
   },
+  size: {
+    small: '37rem',
+  },
 }

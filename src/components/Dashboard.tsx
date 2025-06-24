@@ -6,11 +6,11 @@ import YearsDisplay from './timeline/YearsDisplay'
 import NavControls from './timeline/NavControls'
 import MobilePagination from './timeline/MobilePagination'
 import LoadingSpinner from './shared/LoadingSpinner'
+import InteractiveRing from './timeline/InteractiveRing'
 
 import { ContextProvider } from '../context/useDataContext'
 
 const SliderSidebar = React.lazy(() => import('./timeline/SliderSidebar'))
-const InteractiveRing = React.lazy(() => import('./timeline/InteractiveRing'))
 
 const Dashboard = () => {
   return (
@@ -49,18 +49,18 @@ const Dashboard = () => {
 const Container = styled.div`
   position: relative;
 
+  min-height: 100dvh;
+  width: min(75vw, 100vw);
+  margin-left: clamp(1rem, 17vw, 20rem);
+
   border-left: 1px solid rgba(66, 86, 122, 0.1);
   border-right: 1px solid rgba(66, 86, 122, 0.1);
 
-  width: min(75vw, 100%);
-  min-height: 100dvh;
-  margin-left: clamp(16px, 17vw, 320px);
-
   background-color: ${({ theme }) => theme.colors.customWhite};
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     margin-left: 0;
-    padding-left: 20px;
+    padding-left: 1.25rem;
     border-left: none;
     border-right: none;
     width: 100dvw;
@@ -68,18 +68,19 @@ const Container = styled.div`
 `
 
 const ContentWrapper = styled.main`
+  width: 100%;
+  min-height: 100dvh;
+
+  padding-top: clamp(3.75rem, 16vh, 10.625rem);
+  padding-bottom: clamp(1.25rem, 5vh, 3.75rem);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  width: 100%;
-  min-height: 100dvh;
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    padding-top: 3.75rem;
 
-  padding-top: clamp(60px, 16vh, 170px);
-  padding-bottom: clamp(20px, 5vh, 60px);
-
-  @media (max-width: 599px) {
-    padding-top: 60px;
     justify-content: space-between;
   }
 `
@@ -89,7 +90,7 @@ const LinesWrapper = styled.div`
   inset: 0;
   pointer-events: none;
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     display: none;
   }
 `
@@ -100,6 +101,7 @@ const VerticalLine = styled.span`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+
   width: 1px;
 
   background-color: rgba(66, 86, 122, 0.1);
@@ -111,19 +113,22 @@ const HorizontalLine = styled.span`
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(66, 86, 122, 0.1);
+
   height: 1px;
+
+  background-color: rgba(66, 86, 122, 0.1);
 `
 
 const MobileDisplayHorizontalLine = styled.div`
   display: none;
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     display: block;
+
     width: calc(100% - 20px);
     height: 1px;
 
-    margin-top: 60px;
+    margin-top: 3.75rem;
     background-color: #c7cdd9;
   }
 `

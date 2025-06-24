@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 
 const HeaderTitle = () => {
@@ -12,15 +13,17 @@ const HeaderTitle = () => {
 }
 
 const Wrapper = styled.header`
+  height: clamp(3.125rem, 6vw, 7.5rem);
+
   display: flex;
   align-items: center;
-  column-gap: clamp(16px, 4vw, 80px);
-  height: clamp(50px, 6vw, 120px);
+  column-gap: clamp(1rem, 4vw, 5rem);
 `
 
 const GradientBar = styled.span`
   height: 100%;
-  border-left: clamp(2px, 0.3vw, 5px) solid;
+
+  border-left: clamp(0.125rem, 0.3vw, 0.3rem) solid;
   border-image-source: linear-gradient(
     180deg,
     ${({ theme }) => theme.colors.customBlue} 0%,
@@ -28,19 +31,19 @@ const GradientBar = styled.span`
   );
   border-image-slice: 1;
 
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     display: none;
   }
 `
 
 const Title = styled.h1`
-  font-size: clamp(28px, 2.9vw, 56px);
+  font-size: clamp(1.75rem, 2.9vw, 3.5rem);
   line-height: 1.2;
   font-weight: 700;
 
-  @media (max-width: 768px) {
-    font-size: 20px;
+  @media (max-width: ${({ theme }) => theme.size.small}) {
+    font-size: 1.25rem;
   }
 `
 
-export default HeaderTitle
+export default React.memo(HeaderTitle)

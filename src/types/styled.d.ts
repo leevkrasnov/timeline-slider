@@ -9,5 +9,8 @@ declare module 'styled-components' {
       iris: string
       fuschia: string
     }
+    size: {
+      small: string
+    }
   }
 }

@@ -19,26 +19,28 @@ const NavControls = () => {
 }
 
 const Wrapper = styled.nav`
+  width: clamp(4rem, 6vw, 7.5rem);
+  height: clamp(3.5rem, 5vw, 5.625rem);
+
+  margin-left: clamp(1rem, 4vw, 5rem);
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
 
-  width: clamp(60px, 6vw, 120px);
-  height: clamp(50px, 8vh, 90px);
-  margin-inline: clamp(16px, 4vw, 80px);
-
-  @media (max-width: 599px) {
+  @media (max-width: ${({ theme }) => theme.size.small}) {
     position: absolute;
-    left: 20px;
-    bottom: 15px;
+
+    left: 1.25rem;
+    bottom: 1rem;
+
     margin-inline: 0;
   }
 `
 
 const SlideIndicator = styled.span`
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 0.875rem;
 `
 
 export default NavControls
